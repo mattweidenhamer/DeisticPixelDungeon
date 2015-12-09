@@ -1,0 +1,31 @@
+Changelog:
+V 0.1.0: "In the beginning...":
+
+ADDED:
++Added four new races into the game: Human, Dwarf, Wraith, and Gnoll.
++Added four new artifacts: The Wooden Effigy, the Wraith Amulet, the Chains of Ares, and the Comm Relay
++New weapon enchantment added: Null adds a random chance to Silence a mob.
+-New Debuff: The Decay debuff is the first try at a suggested idea of "permanent debuffs," which require certain events
+in order to be removed. It is applied by Blue Wraiths, in order to discourage excess farming in the BOTD (though you'll
+probably have so many potions of healing at this point that it won't matter too much). It will do a moderate amount of 
+damage every ten turns. To remove the debuff, stand on a sungrass seed for a few turns.
+-New Debuff: The Silence debuff makes a character unable to use any ranged weapons. It is affected by Ring of Elements. 
+Goes away after a duration. Some other mobs may be affected in other ways by this debuff due to their nature.
+
+TWEAKED: 
++Wands of Telekinesis will now cause any flying enemy they hit to lose the ability to fly for but a moment.
+~**Scrolls that burn will now "detonate", in a similar manner to potions that shatter.** Some have exactly the expected effect.
+Burning a Scroll of Regrowth is very not advised.
+-Mystery Meat's debuffs have been changed due to people complaining that the old effects weren't "realistic enough."
+-Dachhack's mystery meat will now apply all the same debuffs as regular mystery meat. (Though at a lower chance) 
+//You think I'm putting all that work into it just for people to cook some goddamn crab meat? No, man, I'm putting 
+it in so that people can cook some regular meat too.
+
+
+ADDITIONAL:
+~It's Blue. Da ba dee.
+~Renamed the packaging to com.avmoga.dpixel
+~Began behind-the-scenes work on implementing Gods, and a new quest(s).
++Updated the source code to 0.3.5, which entailed a significant amount of copying and pasting getLength() and getWidth(). Thanks, Dachhack.
+~A bunch of other stuff that I've forgotten about but is definetely in there
+
