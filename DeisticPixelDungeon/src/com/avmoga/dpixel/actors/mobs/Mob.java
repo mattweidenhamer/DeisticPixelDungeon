@@ -41,6 +41,8 @@ import com.avmoga.dpixel.items.RedDewdrop;
 import com.avmoga.dpixel.items.VioletDewdrop;
 import com.avmoga.dpixel.actors.buffs.Dewcharge;
 import com.avmoga.dpixel.items.YellowDewdrop;
+import com.avmoga.dpixel.items.artifacts.AresChains;
+import com.avmoga.dpixel.items.artifacts.AresChains.chainsRecharge;
 import com.avmoga.dpixel.items.artifacts.TimekeepersHourglass;
 import com.avmoga.dpixel.items.rings.RingOfAccuracy;
 import com.avmoga.dpixel.items.rings.RingOfWealth;
@@ -495,6 +497,9 @@ public abstract class Mob extends Char {
 		int bonus = 0;
 		for (Buff buff : Dungeon.hero.buffs(RingOfWealth.Wealth.class)) {
 			bonus += ((RingOfWealth.Wealth) buff).level;
+		}
+		for (Buff buff : Dungeon.hero.buffs(AresChains.chainsRecharge.class)) {
+			((AresChains.chainsRecharge) buff).gainEXP(EXP);
 		}
 
 		lootChance *= Math.pow(1.1, bonus);

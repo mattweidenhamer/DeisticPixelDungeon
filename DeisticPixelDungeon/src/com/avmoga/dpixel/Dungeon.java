@@ -673,7 +673,6 @@ public static Level newThiefBossLevel(){
 	}
 
 
-	@SuppressWarnings("deprecation")
 	public static void switchLevel(final Level level, int pos) {
 
 		Dungeon.level = level;

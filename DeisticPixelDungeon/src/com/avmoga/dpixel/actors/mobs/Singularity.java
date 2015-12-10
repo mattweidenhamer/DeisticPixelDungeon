@@ -39,7 +39,7 @@ import com.avmoga.dpixel.actors.buffs.Slow;
 public class Singularity extends Mob implements Callback {
 
 	{
-		name = "arcane singularity";//TODO attacks never hit, fix.
+		name = "arcane singularity";
 		spriteClass = OrbOfZotSprite.class;
 		
 		hostile = true;

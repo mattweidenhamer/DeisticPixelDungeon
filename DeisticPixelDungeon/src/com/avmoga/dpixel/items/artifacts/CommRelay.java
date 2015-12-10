@@ -7,6 +7,7 @@ import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.actors.Actor;
 import com.avmoga.dpixel.actors.hero.Hero;
 import com.avmoga.dpixel.actors.hero.HeroRace;
+import com.avmoga.dpixel.actors.mobs.Mob;
 import com.avmoga.dpixel.actors.mobs.npcs.MirrorImage;
 import com.avmoga.dpixel.items.Ankh;
 import com.avmoga.dpixel.items.Generator;
@@ -60,38 +61,42 @@ public class CommRelay extends Artifact {
 	public void execute(Hero hero, String action) {
 		super.execute(hero, action);
 		if (action.equals(AC_MERC)) {
-			if (!isEquipped(hero))
-				GLog.i("You need to equip this to do that.");
-			else if(!useable())
-				GLog.i("What are you trying to do?");
-			else if (!(Dungeon.gold >= 500))//TODO adjust the gold cost based on current level.
-				GLog.i("You are too poor to do that.");
-			else {
-				ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+			if(!cursed){
+				if (!isEquipped(hero))
+					GLog.i("You need to equip this to do that.");
+				else if(!useable())
+					GLog.i("What are you trying to do?");
+				else if (!(Dungeon.gold >= 500))//TODO adjust the gold cost based on current level.
+					GLog.i("You are too poor to do that.");
+				else {
+					ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
 
-				for (int offset : Level.NEIGHBOURS8) {
-					int p = Dungeon.hero.pos + offset;
-					if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {
-						respawnPoints.add(p);
+					for (int offset : Level.NEIGHBOURS8) {
+						int p = Dungeon.hero.pos + offset;
+						if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {
+							respawnPoints.add(p);
+						}
+						int index = Random.index(respawnPoints);
+
+						MirrorImage merc = new MirrorImage();
+						merc.mercenary(level);
+						GameScene.add(merc);
+						WandOfBlink.appear(merc, respawnPoints.get(index));
+
+						respawnPoints.remove(index);
+						Dungeon.gold -= 500;
+						GLog.i(TXT_MERC);
+						break;
 					}
-					int index = Random.index(respawnPoints);
-
-					MirrorImage merc = new MirrorImage();
-					merc.mercenary(level);
-					GameScene.add(merc);
-					WandOfBlink.appear(merc, respawnPoints.get(index));
-
-					respawnPoints.remove(index);
-					Dungeon.gold -= 500;
-					GLog.i(TXT_MERC);
-					break;
 				}
+			} else {
+				GLog.i("The item will not obey you!");
 			}
 		} else if (action.equals(AC_SUPP)) {
 			if(Dungeon.bossLevel()){
 				GLog.i(TXT_BOSS);
 			} else{
-				GameScene.selectCell(listener);//TODO fix listener
+				GameScene.selectCell(listener);
 			}
 		}
 	}
@@ -158,8 +163,17 @@ public class CommRelay extends Artifact {
 	
 	public class Collection extends ArtifactBuff{
 		public void collectGold(int gold){
-			exp += gold / 4;
+			exp += gold / 8;
 			checkUpgrade();
+		}
+		public boolean act(){
+			if(isCursed()){
+				for(Mob mob : Dungeon.level.mobs){
+					mob.beckon(Dungeon.hero.pos);
+				}
+			}
+			updateQuickslot();
+			return true;
 		}
 		public void checkUpgrade(){
 			while (exp >= 1000 && level < levelCap){

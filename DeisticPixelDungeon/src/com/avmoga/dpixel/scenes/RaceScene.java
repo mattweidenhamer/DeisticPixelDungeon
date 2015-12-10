@@ -17,7 +17,7 @@
  */
 package com.avmoga.dpixel.scenes;
 
-import java.util.HashMap;//TODO make the race select scene, which will essentially copy this class
+import java.util.HashMap;
 
 import com.avmoga.dpixel.Assets;
 import com.avmoga.dpixel.Badges;

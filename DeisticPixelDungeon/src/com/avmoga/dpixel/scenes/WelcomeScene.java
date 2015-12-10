@@ -19,11 +19,11 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.0.1 DPD, v0.3.0: SPD, 0.2.4c: PD 1.7.5 and Some Extras!";
+	private static final String TTL_Update = "v0.1.0 DPD, v0.3.0: SPD, 0.2.4c: PD 1.7.5 and Some Extras!";
 
 	private static final String TTL_Future = "Wait What?";
 
-	private static final String TXT_Welcome = "Deistic Pixel Dungeon\n\n"
+	private static final String TXT_Welcome = "Deistic Pixel Dungeon\n\nVersion 0.1.0: Genesis"
 			+"This is a rework/expansion of Watabou's Pixel Dungeon.\n\n"
 			+ "Included are all additions from Shattered Pixel Dungeon (0.2.4c) by 00-Evan.\n\n"
 			+ "Additionally, all additions from Sprouted Pixel Dungeon (0.3.5 beta) by dachhack are here.\n\n"
@@ -37,7 +37,8 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TXT_Update = 
 			"Version 0.1.0 is the first and basic modification. Expect lots of errors and bugs\n\n"
-
+			+ "Added in Races. Select your race by starting a new game with any character. Each race has appropriate masteries, and an item that only that race can use.\n\n"
+			+ "Added in four new Artifacts, each of which can only be used to their full potential by their respective race."
 			;
 
 	private static final String TXT_Future = "It seems that your current saves are from a future version of Sprouted Pixel Dungeon!\n\n"

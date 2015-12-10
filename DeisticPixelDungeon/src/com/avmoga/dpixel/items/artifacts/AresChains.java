@@ -1,7 +1,6 @@
 package com.avmoga.dpixel.items.artifacts;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.actors.Actor;
@@ -13,20 +12,19 @@ import com.avmoga.dpixel.actors.buffs.Paralysis;
 import com.avmoga.dpixel.actors.hero.Hero;
 import com.avmoga.dpixel.actors.hero.HeroRace;
 import com.avmoga.dpixel.actors.mobs.Mob;
-import com.avmoga.dpixel.actors.mobs.npcs.NPC;
 import com.avmoga.dpixel.effects.Chain;
-import com.avmoga.dpixel.effects.Lightning;
+import com.avmoga.dpixel.effects.Pushing;
 import com.avmoga.dpixel.effects.particles.FlameParticle;
 import com.avmoga.dpixel.items.Item;
 import com.avmoga.dpixel.levels.Level;
 import com.avmoga.dpixel.mechanics.Ballistica;
-import com.avmoga.dpixel.plants.BombFruit;
 import com.avmoga.dpixel.scenes.CellSelector;
 import com.avmoga.dpixel.scenes.GameScene;
 import com.avmoga.dpixel.sprites.ItemSpriteSheet;
 import com.avmoga.dpixel.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+import com.watabou.utils.Callback;
 
 public class AresChains extends Artifact {
 	{
@@ -42,20 +40,15 @@ public class AresChains extends Artifact {
 		chargeCap = (((level + 1) / 2) + 3);
 		//Level Progression: 0, 2, 5, 7, 10
 	}
+	public static int mobsSinceUpgrade = 0;
 	private static final float TIMETOUSE = 1f;
-	public static final String AC_CHAIN = "CHAIN";
-	public static final String AC_PULL = "PULL";
+	private static final String AC_CHAIN = "CHAIN";
+	private static final String AC_PULL = "PULL";
 	private static final String YELL = "I HAVE YOU NOW!";
 	private static final String BUFF = "buff";
 	private static final String TXT_FAIL = "but there was nobody to pull...";
 	private static final String TXT_NO_CHARGE = "But there was no charge...";
 	private static final String TXT_SELF_TARGET = "you can't target yourself.";
-	
-	public Item upgrade() {
-		chargeCap += 1;
-
-		return super.upgrade();
-	}
 	
 	public void castChain(int cell){
 
@@ -110,16 +103,24 @@ public class AresChains extends Artifact {
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		if(isEquipped(hero) && !cursed){
-			//if ((hero.heroRace() == HeroRace.DWARF || hero.heroRace() == HeroRace.HUMAN))
+			if ((hero.heroRace() == HeroRace.DWARF || hero.heroRace() == HeroRace.HUMAN))
 				actions.add(AC_CHAIN);
 			
-			//if (hero.heroRace() == HeroRace.DWARF && level >= 2)
+			if (hero.heroRace() == HeroRace.DWARF && level >= 2)
 					actions.add(AC_PULL);
 		}
 		return actions;
 	}
-	protected boolean useable(){
+	
+	protected boolean useableBasic(){
 		if(Dungeon.hero.heroRace() == HeroRace.HUMAN || Dungeon.hero.heroRace() == HeroRace.DWARF){
+			return true;
+		}
+		return false;
+	}
+	
+	protected boolean useable(){
+		if(Dungeon.hero.heroRace() == HeroRace.DWARF){
 			return true;
 		}
 		return false;
@@ -136,30 +137,38 @@ public class AresChains extends Artifact {
 				GLog.i("You need to equip this to do that.");
 			else if(cursed)
 				GLog.i("The chains will not obey your will!");
-			else if(!useable()){
+			else if(!useableBasic()){
 				GLog.i("What are you trying to do?");
 			}
 			else {
 				GameScene.selectCell(chain);
 				}
-		} else if (action.equals(AC_PULL)) {//TODO Fix pulling: The problem is that enemies get pulled multiple times after being pulled.
+		} else if (action.equals(AC_PULL) && useable()) {
 			Dungeon.hero.checkVisibleMobs();
+			
 			if(charge > 0 && (Dungeon.hero.visibleEnemies()) > 0){
 				Dungeon.hero.yell(YELL);
-				for (Mob mob : Dungeon.level.mobs) {
+				for (final Mob mob : Dungeon.level.mobs) {
 					if(Level.fieldOfView[mob.pos]){
 						for(int space : Level.NEIGHBOURS8){
-							if((Actor.findChar(Dungeon.hero.pos + space) == null) && (charge > 0) && (Level.passable[Dungeon.hero.pos + space] ||Level.avoid[Dungeon.hero.pos + space])){
-								Dungeon.hero.busy();
-								mob.move(Dungeon.hero.pos + space);
-								Dungeon.hero.sprite.parent.add(new Chain(Dungeon.hero.pos, mob.pos, null));
-								GLog.i("Pulled a " + mob.name + "!");
-								mob.damage(Random.Int(mob.HT / 10, mob.HT / 4), this);
-								if (!mob.immunities().contains(Paralysis.class)){
-									Buff.prolong(mob, Paralysis.class, Paralysis.duration(mob));
-								}
+							final int newSpace = Dungeon.hero.pos + space;
+							if((Actor.findChar(newSpace) == null) && (charge > 0) && (Level.passable[newSpace] ||Level.avoid[newSpace])){
+								curUser.busy();
+								curUser.sprite.parent.add(new Chain(curUser.pos, mob.pos, new Callback() {
+									public void call() {
+										Actor.add(new Pushing(mob, mob.pos, newSpace));
+										mob.pos = newSpace;
+										Dungeon.observe();
+										curUser.spendAndNext(1f);
+										Dungeon.level.mobPress(mob);
+										GLog.i("Pulled a " + mob.name + "!");
+										mob.damage(Random.Int(mob.HT / 10, mob.HT / 4), this);
+										if (!mob.immunities().contains(Paralysis.class)){
+											Buff.prolong(mob, Paralysis.class, Paralysis.duration(mob));
+										}
+									}
+								}));
 								charge--;
-								Dungeon.observe();
 								break;
 							} 
 						}
@@ -219,7 +228,7 @@ public class AresChains extends Artifact {
 		@Override
 		public boolean act() {
 			if (charge < chargeCap && !cursed) {
-				partialCharge += 1 / (30f - (chargeCap - charge) * 2f);
+				partialCharge += 1 / (45f - (chargeCap - charge) * 2f);
 
 				if (partialCharge >= 1) {
 					partialCharge--;
@@ -238,6 +247,16 @@ public class AresChains extends Artifact {
 			spend(TICK);
 
 			return true;
+		}
+		public void gainEXP(float partialEXP){
+			if (cursed) return;
+			
+			exp += Math.round(partialEXP);
+			
+			if(Random.Int(exp, 10000) > 7000){
+				exp = 0;
+				upgrade();
+			}
 		}
 	}
 }

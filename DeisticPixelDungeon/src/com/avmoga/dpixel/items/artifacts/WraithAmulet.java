@@ -7,25 +7,20 @@ import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.actors.Actor;
 import com.avmoga.dpixel.actors.buffs.Buff;
 import com.avmoga.dpixel.actors.buffs.Invisibility;
+import com.avmoga.dpixel.actors.buffs.Vertigo;
 import com.avmoga.dpixel.actors.hero.Hero;
 import com.avmoga.dpixel.actors.hero.HeroRace;
 import com.avmoga.dpixel.actors.mobs.Mob;
-import com.avmoga.dpixel.effects.CellEmitter;
-import com.avmoga.dpixel.effects.Effects;
 import com.avmoga.dpixel.effects.particles.ShadowParticle;
 import com.avmoga.dpixel.sprites.ItemSpriteSheet;
 import com.avmoga.dpixel.ui.QuickSlotButton;
 import com.avmoga.dpixel.utils.GLog;
+import com.watabou.utils.Random;
 import com.avmoga.dpixel.items.Item;
-import com.avmoga.dpixel.items.wands.Wand;
 import com.avmoga.dpixel.items.wands.WandOfBlink;
 import com.avmoga.dpixel.levels.Level;
-import com.avmoga.dpixel.mechanics.Ballistica;
 import com.avmoga.dpixel.scenes.CellSelector;
 import com.avmoga.dpixel.scenes.GameScene;
-import com.watabou.utils.Bundle;
-import com.watabou.utils.Callback;
-import com.watabou.utils.Random;
 
 public class WraithAmulet extends Artifact {
 	
@@ -35,7 +30,7 @@ public class WraithAmulet extends Artifact {
 		
 		charge = ((level / 2) +3 );
 		partialCharge = 0;
-		chargeCap = (((level + 1) / 2) + 3);
+		chargeCap = (((level + 2) / 2) + 3);
 		level = 0;
 		levelCap = 10;
 		
@@ -59,24 +54,41 @@ public class WraithAmulet extends Artifact {
 	public void execute(Hero hero, String action) {
 		super.execute(hero, action);
 		if(action.equals(AC_GHOST)){
-			if(this.isEquipped(Dungeon.hero)){
-				if(this.charge > 0){
-					Buff.affect(Dungeon.hero, Invisibility.class, Invisibility.DURATION);
-					GLog.i(TXT_GHOST);
+			if(useableBasic()){
+				if(this.isEquipped(Dungeon.hero)){
+					if(this.charge > 0){
+						Buff.affect(Dungeon.hero, Invisibility.class, Invisibility.DURATION);
+						GLog.i(TXT_GHOST);
+					} else {
+						GLog.i(TXT_NOCHARGE);
+					}
 				} else {
-					GLog.i(TXT_NOCHARGE);
-				}
+					GLog.i(TXT_NOEQUIP);
+				} 
 			} else {
-				GLog.i(TXT_NOEQUIP);
+				GLog.i("What are you trying to do?");
 			}
 		} else if (action.equals(AC_ASSASSINATE)) {
 			if(this.charge > 0){
 				GameScene.selectCell(porter);
-				charge--;
 			} else {
 				GLog.i(TXT_NOCHARGE);
 			}
 		}
+	}
+	
+	protected boolean useableBasic(){
+		if(Dungeon.hero.heroRace() == HeroRace.HUMAN || Dungeon.hero.heroRace() == HeroRace.WRAITH){
+			return true;
+		}
+		return false;
+	}
+	
+	protected boolean useable(){
+		if(Dungeon.hero.heroRace() == HeroRace.WRAITH){
+			return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<String> actions(Hero hero) {
@@ -104,6 +116,10 @@ public class WraithAmulet extends Artifact {
 					if (charge == chargeCap) {
 						partialCharge = 0;
 					}
+				}
+			} else if(cursed){
+				if(Random.Int(40) == 0){
+					Buff.affect(curUser, Vertigo.class, Vertigo.duration(curUser));
 				}
 			}
 
@@ -156,7 +172,7 @@ public class WraithAmulet extends Artifact {
 	public int getCharge(){
 		return this.charge;
 	}
-	protected static CellSelector.Listener porter = new CellSelector.Listener() {//TODO Get me working
+	protected static CellSelector.Listener porter = new CellSelector.Listener() {
 		public String prompt() {
 			return "Choose direction to teleport";
 		}

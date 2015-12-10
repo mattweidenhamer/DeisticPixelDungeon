@@ -78,7 +78,7 @@ public class MysticBranch extends Artifact {
 	
 	public void execute(Hero hero, String action) {
 		super.execute(hero, action);
-		if (action.equals(AC_PLANT)) {
+		if (action.equals(AC_PLANT) && Dungeon.hero.heroRace == HeroRace.GNOLL && charge == 0) {
 			GameScene.selectCell(listener);
 		}
 	}
@@ -87,16 +87,18 @@ public class MysticBranch extends Artifact {
 			return new Affinity();
 	}
 	
-	public class Affinity extends ArtifactBuff {//TODO double check recharging, fix hero death by bomb seed scene
+	public class Affinity extends ArtifactBuff {
 		public boolean act(){
-			if(charge > 0){
+			if(!(charge > 0)){
 				charge--;
 			}
 			if(cursed){
 					if(Random.Int(20)==0){
 						new Wraith().pos = Dungeon.level.randomRespawnCell();
+						GLog.w("A spirit has been dispatched to avenge the dungeon.");
 					}
 			}
+			updateQuickslot();
 			spend(TICK);
 			return true;
 		}
