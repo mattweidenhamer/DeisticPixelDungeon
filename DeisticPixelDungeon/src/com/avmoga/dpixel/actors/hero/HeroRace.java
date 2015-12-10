@@ -9,7 +9,10 @@ import com.avmoga.dpixel.actors.buffs.Charm;
 import com.avmoga.dpixel.actors.buffs.Ooze;
 import com.avmoga.dpixel.actors.buffs.Poison;
 import com.avmoga.dpixel.actors.hero.Hero;
+import com.avmoga.dpixel.items.DewVial;
+import com.avmoga.dpixel.items.DewVial2;
 import com.avmoga.dpixel.items.Generator;
+import com.avmoga.dpixel.items.SewersKey;
 import com.avmoga.dpixel.items.artifacts.AresChains;
 import com.avmoga.dpixel.items.artifacts.Artifact;
 import com.avmoga.dpixel.items.artifacts.CommRelay;
@@ -100,7 +103,7 @@ public enum HeroRace {
 		hero.resistances().add(Burning.class);
 		hero.resistances().add(Poison.class);
 		hero.resistances().add(Burning.class);
-		AresChains ares = new AresChains(); ares.collect();
+		DewVial vial = new DewVial(); vial.collect(); 
 	}
 	private static void initHuman(Hero hero){
 		hero.heroRace = HUMAN;
@@ -110,14 +113,13 @@ public enum HeroRace {
 		hero.heroRace = WRAITH;
 		hero.resistances().add(Burning.class);
 		hero.resistances().add(Freezing.class);
-		WraithAmulet amulet = new WraithAmulet(); amulet.collect();
 	}
 	private static void initGnoll(Hero hero){
 		hero.heroRace = GNOLL;
 		ScrollOfRegrowth regrow = new ScrollOfRegrowth();
 		regrow.setKnown();
 		regrow.collect();
-		hero.resistances().add(Charm.class);
+		SewersKey key = new SewersKey(); key.collect();
 	}
 	public String[] perks(){
 		switch(this){

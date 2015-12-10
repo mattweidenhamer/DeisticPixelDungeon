@@ -512,7 +512,7 @@ public class DewVial extends Item {
 
 	@Override
 	public String status() {
-		return Utils.format(TXT_STATUS, volume, MAX_VOLUME());
+		return Utils.format(TXT_STATUS, volume, MAX_VOLUME);
 	}
 
 	@Override

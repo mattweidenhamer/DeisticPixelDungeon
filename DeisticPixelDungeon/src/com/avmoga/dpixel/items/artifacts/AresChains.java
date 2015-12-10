@@ -253,9 +253,10 @@ public class AresChains extends Artifact {
 			
 			exp += Math.round(partialEXP);
 			
-			if(Random.Int(exp, 10000) > 7000){
+			if(Random.Int(exp, 10000) > 9500 && level < levelCap){
 				exp = 0;
 				upgrade();
+				updateQuickslot();
 			}
 		}
 	}

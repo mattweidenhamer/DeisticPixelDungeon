@@ -28,7 +28,7 @@ public class WraithAmulet extends Artifact {
 		name = "Wraithmetal Amulet";
 		image = ItemSpriteSheet.ARTIFACT_WAMULET;
 		
-		charge = ((level / 2) +3 );
+		charge = ((level + 2 / 2) +3 );
 		partialCharge = 0;
 		chargeCap = (((level + 2) / 2) + 3);
 		level = 0;
@@ -59,6 +59,7 @@ public class WraithAmulet extends Artifact {
 					if(this.charge > 0){
 						Buff.affect(Dungeon.hero, Invisibility.class, Invisibility.DURATION);
 						GLog.i(TXT_GHOST);
+						charge--;
 					} else {
 						GLog.i(TXT_NOCHARGE);
 					}
@@ -106,7 +107,7 @@ public class WraithAmulet extends Artifact {
 	
 	public class WraithRecharge extends ArtifactBuff{
 		public boolean act() {
-			if (charge < chargeCap && !cursed) {
+			if (charge < chargeCap && !cursed && useableBasic()) {
 				partialCharge += 1 / (150f - (chargeCap - charge) * 15f);
 
 				if (partialCharge >= 1) {
@@ -119,7 +120,9 @@ public class WraithAmulet extends Artifact {
 				}
 			} else if(cursed){
 				if(Random.Int(40) == 0){
+					GLog.i("You are overcome by the arcane!");
 					Buff.affect(curUser, Vertigo.class, Vertigo.duration(curUser));
+					
 				}
 			}
 

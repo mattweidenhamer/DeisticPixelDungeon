@@ -35,7 +35,6 @@ public class MysticBranch extends Artifact {
 		levelCap = 4;
 		
 		charge = 0;
-		chargeCap = level >= 2 ? 5 : 0;
 	}
 	private static final String TXT_MONSTER = "There is a monster there already.";
 	private static final String UPGRADETXT = "Your effigy grows in power!";
@@ -89,7 +88,7 @@ public class MysticBranch extends Artifact {
 	
 	public class Affinity extends ArtifactBuff {
 		public boolean act(){
-			if(!(charge > 0)){
+			if(charge > 0){
 				charge--;
 			}
 			if(cursed){

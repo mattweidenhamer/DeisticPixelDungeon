@@ -40,6 +40,7 @@ import com.avmoga.dpixel.actors.buffs.MindVision;
 import com.avmoga.dpixel.actors.buffs.Shadows;
 import com.avmoga.dpixel.actors.hero.Hero;
 import com.avmoga.dpixel.actors.hero.HeroClass;
+import com.avmoga.dpixel.actors.hero.HeroRace;
 import com.avmoga.dpixel.actors.hero.HeroSubRace;
 import com.avmoga.dpixel.actors.mobs.AlbinoPiranha;
 import com.avmoga.dpixel.actors.mobs.Bestiary;
@@ -1419,7 +1420,7 @@ public abstract class Level implements Bundlable {
 					fieldOfView[p - getWidth()] = true;
 				}
 			}
-			if (c.buff(MysticBranch.Affinity.class) != null) {
+			if (c.buff(MysticBranch.Affinity.class) != null && (Dungeon.hero.heroRace == HeroRace.GNOLL || Dungeon.hero.heroRace == HeroRace.HUMAN)) {
 				for (Mob mob : mobs) {
 					int p = mob.pos;
 					if(flamable[p]){
