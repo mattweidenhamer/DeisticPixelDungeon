@@ -75,7 +75,7 @@ public class Blacksmith2 extends NPC {
 	
 
 	{
-		name = BlacksmithName.getName(Dungeon.names);
+		name = "Troll Blacksmith named Bop";
 		spriteClass = BlacksmithSprite.class;
 	}
 	

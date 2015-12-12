@@ -24,7 +24,7 @@ import com.watabou.noosa.Image;
 public enum Icons {
 
 	SKULL, BUSY, COMPASS, INFO, PREFS, WARNING, TARGET, MASTERY, WATA, SHPX, WARRIOR, MAGE, ROGUE, HUNTRESS, CLOSE, DEPTH, DEPTH_LG, SLEEP, ALERT, 
-	BACKPACK, SEED_POUCH, SCROLL_HOLDER, POTION_BANDOLIER, WAND_HOLSTER, CHECKED, UNCHECKED, EXIT, CHALLENGE_OFF, CHALLENGE_ON, RESUME, ANKH_CHAIN, KEYRING;
+	BACKPACK, SEED_POUCH, SCROLL_HOLDER, POTION_BANDOLIER, WAND_HOLSTER, CHECKED, UNCHECKED, EXIT, CHALLENGE_OFF, CHALLENGE_ON, RESUME, ANKH_CHAIN, KEYRING, BOX;
 
 	public Image get() {
 		return get(this);
@@ -128,6 +128,9 @@ public enum Icons {
 			break;
 		case KEYRING:
 			icon.frame(icon.texture.uvRect(66, 29, 72, 39));
+			break;
+		case BOX:
+			icon.frame(icon.texture.uvRect(94, 44, 110, 60));
 			break;
 		}
 		return icon;

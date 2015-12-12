@@ -41,6 +41,7 @@ import com.avmoga.dpixel.actors.mobs.npcs.Blacksmith;
 import com.avmoga.dpixel.actors.mobs.npcs.Ghost;
 import com.avmoga.dpixel.actors.mobs.npcs.Imp;
 import com.avmoga.dpixel.actors.mobs.npcs.Wandmaker;
+import com.avmoga.dpixel.gods.God;
 import com.avmoga.dpixel.items.Ankh;
 import com.avmoga.dpixel.items.Generator;
 import com.avmoga.dpixel.items.Item;
@@ -1092,25 +1093,6 @@ public static Level newThiefBossLevel(){
 				droppedItems.put(i, dropped);
 			}
 		}
-
-		// logic for pre 0.2.4 bags, remove when no longer supporting those
-		// saves.
-		if (version <= 32) {
-			int deepest = Statistics.deepestFloor;
-			if (deepest > 15)
-				limitedDrops.wandBag.count = 1;
-			if (deepest > 10)
-				limitedDrops.scrollBag.count = 1;
-			if (deepest > 5)
-				limitedDrops.seedBag.count = 1;
-		}
-		
-		// logic for pre 0.2.1 saves in progress
-		if (version < 58 && Statistics.deepestFloor > 1){
-			dewWater = false;
-			dewDraw = true;
-			wings = false;
-		}
 	}
 
 	public static Level loadLevel(HeroClass cl) throws IOException {
@@ -1192,6 +1174,7 @@ public static Level newThiefBossLevel(){
 	}
 
 	private static boolean[] passable = new boolean[Level.getLength()];
+	public static HashSet<God> discoveredGods;
 	
 
 	public static int findPath(Char ch, int from, int to, boolean pass[],

@@ -37,6 +37,7 @@ import com.avmoga.dpixel.items.ActiveMrDestructo;
 import com.avmoga.dpixel.items.Ankh;
 import com.avmoga.dpixel.items.Gold;
 import com.avmoga.dpixel.items.LloydsBeacon;
+import com.avmoga.dpixel.items.artifacts.Rapper;
 import com.avmoga.dpixel.items.keys.SkeletonKey;
 import com.avmoga.dpixel.items.scrolls.ScrollOfPsionicBlast;
 import com.avmoga.dpixel.items.weapon.enchantments.Death;
@@ -63,11 +64,8 @@ public class Goo extends Mob {
 		loot = new ActiveMrDestructo();
 		lootChance = 0.5f;
 		
-		lootOther = Dungeon.getMonth() == 9 ? new Egg() : new Chainsaw().enchantBuzz();
+		lootOther = Dungeon.getMonth() == 9 ? new Chainsaw().enchantBuzz() : (Dungeon.getMonth() == 11 ? new Rapper() : new Egg());
 		lootChanceOther = 0.05f;
-			
-		lootThird = Dungeon.getMonth() != 9 ? new Chainsaw().enchantBuzz() : new Egg();
-		lootChanceThird = 1f;
 	}
 
 	private int pumpedUp = 0;

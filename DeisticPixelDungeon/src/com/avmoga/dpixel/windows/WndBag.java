@@ -35,6 +35,7 @@ import com.avmoga.dpixel.items.Gold;
 import com.avmoga.dpixel.items.Item;
 import com.avmoga.dpixel.items.armor.Armor;
 import com.avmoga.dpixel.items.bags.AnkhChain;
+import com.avmoga.dpixel.items.bags.ArtifactBox;
 import com.avmoga.dpixel.items.bags.Bag;
 import com.avmoga.dpixel.items.bags.KeyRing;
 import com.avmoga.dpixel.items.bags.PotionBandolier;
@@ -65,7 +66,7 @@ public class WndBag extends WndTabbed {
 	public static enum Mode {
 		ALL, UNIDENTIFED, UPGRADEABLE, QUICKSLOT, FOR_SALE, WEAPON, ARMOR, ENCHANTABLE, 
 		WAND, SEED, FOOD, POTION, SCROLL, EQUIPMENT, ADAMANT, REINFORCED, UPGRADEABLESIMPLE,
-		NOTREINFORCED, UPGRADEDEW
+		NOTREINFORCED, UPGRADEDEW, MISSILE
 	}
 
 	protected static final int COLS_P = 4;
@@ -126,7 +127,8 @@ public class WndBag extends WndTabbed {
 				stuff.getItem(PotionBandolier.class),
 				stuff.getItem(WandHolster.class), 
 				stuff.getItem(KeyRing.class), 
-				stuff.getItem(AnkhChain.class)};
+				stuff.getItem(AnkhChain.class),
+				stuff.getItem(ArtifactBox.class)};
 
 		for (Bag b : bags) {
 			if (b != null) {
@@ -289,6 +291,8 @@ public class WndBag extends WndTabbed {
 				return Icons.get(Icons.ANKH_CHAIN);
 			} else if (bag instanceof KeyRing) {
 				return Icons.get(Icons.KEYRING);
+			} else if (bag instanceof ArtifactBox) {
+				return Icons.get(Icons.BOX);
 			} else {
 				return Icons.get(Icons.BACKPACK);
 			}

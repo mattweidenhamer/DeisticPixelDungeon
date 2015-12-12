@@ -172,6 +172,7 @@ public class CommRelay extends Artifact {
 					mob.beckon(Dungeon.hero.pos);
 				}
 			}
+			spend(TICK);
 			updateQuickslot();
 			return true;
 		}

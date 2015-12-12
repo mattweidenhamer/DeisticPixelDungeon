@@ -24,15 +24,22 @@ import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.ShatteredPixelDungeon;
 import com.avmoga.dpixel.items.Bomb;
 import com.avmoga.dpixel.items.ReturnBeacon;
+import com.avmoga.dpixel.items.SewersKey;
 import com.avmoga.dpixel.items.TomeOfMastery;
+import com.avmoga.dpixel.items.armor.Armor;
 import com.avmoga.dpixel.items.armor.ClothArmor;
+import com.avmoga.dpixel.items.armor.glyphs.Viscosity;
 import com.avmoga.dpixel.items.artifacts.CloakOfShadows;
+import com.avmoga.dpixel.items.artifacts.CommRelay;
+import com.avmoga.dpixel.items.bags.ArtifactBox;
 import com.avmoga.dpixel.items.bags.KeyRing;
 import com.avmoga.dpixel.items.food.Food;
 import com.avmoga.dpixel.items.potions.PotionOfMindVision;
 import com.avmoga.dpixel.items.potions.PotionOfStrength;
 import com.avmoga.dpixel.items.scrolls.ScrollOfIdentify;
 import com.avmoga.dpixel.items.scrolls.ScrollOfMagicMapping;
+import com.avmoga.dpixel.items.scrolls.ScrollOfPsionicBlast;
+import com.avmoga.dpixel.items.wands.WandOfFirebolt;
 import com.avmoga.dpixel.items.wands.WandOfMagicMissile;
 import com.avmoga.dpixel.items.weapon.melee.Dagger;
 import com.avmoga.dpixel.items.weapon.melee.Knuckles;
@@ -205,144 +212,15 @@ public enum HeroClass {
 	}
 
 	public void playtest(Hero hero) {
-		if (!Dungeon.playtest){
+		if (!Dungeon.playtest){//TODO: Use me to playtest from now on.
 		//Playtest
 		//TomeOfMastery tome = new TomeOfMastery(); tome.collect();
 				
 				hero.HT=hero.HP=999;
 				hero.STR = hero.STR + 20;
-			//PlateArmor armor1 = new PlateArmor();
-		   // armor1.reinforce().upgrade(14).identify().collect();
-		   // PlateArmor armor2 = new PlateArmor();
-		   // armor2.upgrade(14).identify().collect();
-		   // WarHammer hammer = new WarHammer();
-		   // hammer.imbue = Weapon.Imbue.HEAVY;
-		    //hammer.reinforce().upgrade(15).identify().collect();	
-		    //Dewcatcher.Seed seed3 = new Dewcatcher.Seed(); seed3.collect();
-		    //Flytrap.Seed seed1 = new Flytrap.Seed(); seed1.collect();
-		    //Phaseshift.Seed seed2 = new Phaseshift.Seed(); seed2.collect();
-		    //Starflower.Seed seed4 = new Starflower.Seed(); seed4.collect();
-				/*
-				PotionBandolier bag1 = new PotionBandolier(); bag1.collect();
-				ScrollHolder bag2 = new ScrollHolder(); bag2.collect();
-				PlateArmor armor = new PlateArmor();
-			    armor.identify().collect();
-			    WarHammer hammer = new WarHammer();
-			    hammer.identify().collect();
-			    Wand wand = new WandOfDisintegration(); wand.upgrade(15); wand.collect();
-				//Wand wand2 = new WandOfFirebolt(); wand2.collect();
-				Ring ring = new RingOfMagic(); ring.upgrade(4); ring.collect();
-				ConchShell conch = new ConchShell(); conch.collect();
-				AncientCoin coin = new AncientCoin(); coin.collect();
-				TenguKey key = new TenguKey(); key.collect();
-				*/
-				//Wand wand = new WandOfAmok(); wand.upgrade(15); wand.collect();
-				//Bone bone = new Bone(); bone.collect();
-				//ConchShell conch = new ConchShell(); conch.collect();
-				//AncientCoin coin = new AncientCoin(); coin.collect();
-				//TenguKey key = new TenguKey(); key.collect();
-			    //SanChikarah san = new SanChikarah(); san.collect();
-				//BookOfLife lbook = new BookOfLife(); lbook.collect();
-			    ReturnBeacon beacon = new ReturnBeacon(); beacon.collect();
-			  //SanChikarahDeath san = new SanChikarahDeath(); san.collect();	
-			   // Blueberry berry = new Blueberry(10); berry.collect();
-			   // PotionOfMindVision potion4 = new PotionOfMindVision(); potion4.collect();
-			    //Dewcatcher.Seed seed3 = new Dewcatcher.Seed(); seed3.collect();
-			   // ActiveMrDestructo mrd = new ActiveMrDestructo(); mrd.collect();
-			   // ActiveMrDestructo2 mrd2 = new ActiveMrDestructo2(); mrd2.collect();
-			  // RingOfDisintegration ar = new RingOfDisintegration(); ar.collect();
-				//PotionOfFrost pot = new PotionOfFrost(); pot.collect();
-				//SteelHoneypot hpot = new SteelHoneypot(); hpot.collect();
-				//Egg egg = new Egg(); egg.collect();
-				//Egg egg2 = new Egg(); egg2.collect();
-				//Flytrap.Seed seed1 = new Flytrap.Seed(); seed1.collect();
-				//Phaseshift.Seed seed2 = new Phaseshift.Seed(); seed2.collect();
-				//Starflower.Seed seed3 = new Starflower.Seed(); seed3.collect();
-				//BlandfruitBush.Seed seed4 = new BlandfruitBush.Seed(); seed4.collect();
-				
-				//Chainsaw saw = new Chainsaw(); saw.enchantBuzz(); saw.collect();
-				//PotionBandolier bag1 = new PotionBandolier(); bag1.collect();
-				//ScrollHolder bag2 = new ScrollHolder(); bag2.collect();
-				//AnkhChain chain = new AnkhChain(); chain.collect();
-				//WandHolster holster = new WandHolster(); holster.collect();
-				
-				//AdamantArmor aArmor = new AdamantArmor(); aArmor.collect();
-				//AdamantWand aWand = new AdamantWand(); aWand.collect();
-				//AdamantRing aRing = new AdamantRing(); aRing.collect();
-				//AdamantWeapon aWeapon = new AdamantWeapon(); aWeapon.collect();
-				
-				Dungeon.playtest=true;
-				GLog.i("Playtest Activated");
-				
-		
-		/*
-				for(int i=0; i<99; i++){
-					Scroll scroll = new ScrollOfMagicalInfusion();
-			        scroll.identify().collect();
-			        Scroll scroll2 = new ScrollOfUpgrade();
-			        scroll2.identify().collect();  
-			        Scroll scroll3 = new ScrollOfIdentify();
-			        scroll3.identify().collect();  
-			        Scroll scroll4 = new ScrollOfRemoveCurse();
-			        scroll4.identify().collect();  
-			       }	
-			     
-			       
-			*/	
+
+				Dungeon.level.drop(new ArtifactBox(), Dungeon.hero.pos);
 		}
-		
-				/*
-							 			      
-			      for(int i=1; i<61; i++){
-				        PotionOfExperience potion1 = new PotionOfExperience(); potion1.collect();
-				       PotionOfInvisibility potion2 = new PotionOfInvisibility(); potion2.collect();
-				       PotionOfHealing potion3 = new PotionOfHealing(); potion3.collect();
-				       PotionOfMindVision potion4 = new PotionOfMindVision(); potion4.collect();
-				      PotionOfLevitation potion5 = new PotionOfLevitation(); potion5.collect();
-				      Bomb bomb = new Bomb(); bomb.collect();
-				      DarkGold darkgold = new DarkGold(); darkgold.collect();
-				        }
-				         
-				
-				       
-				  Blueberry berry = new Blueberry(10); berry.collect();
-				  ClusterBomb cbomb = new ClusterBomb(); cbomb.collect();
-				  DizzyBomb dbomb = new DizzyBomb(); dbomb.collect();
-				  SmartBomb smbomb = new SmartBomb(); smbomb.collect();
-				  SeekingBombItem sbomb = new SeekingBombItem(); sbomb.collect();
-				  SeekingClusterBombItem scbomb = new SeekingClusterBombItem(); scbomb.collect();
-				  
-				  
-				//  Bomb bomb = new Bomb(); bomb.collect();
-				//DeathCap mush1 = new DeathCap(); mush1.collect();
-				//GoldenJelly mush2 = new GoldenJelly(); mush2.collect();
-				//BlueMilk mush3 = new BlueMilk(); mush3.collect();
-				//JackOLantern mush4 = new JackOLantern(); mush4.collect();
-				//Earthstar mush5 = new Earthstar(); mush5.collect();
-				//Lichen mush6 = new Lichen(); mush6.collect();
-				//PixieParasol mush7 = new PixieParasol(); mush7.collect();
-				
-				ActiveMrDestructo mrd = new ActiveMrDestructo(); mrd.collect();
-				//OrbOfZot orb = new OrbOfZot(); orb.collect();
-				        
-				//Phaseshift.Seed seed = new Phaseshift.Seed(); seed.collect();
-				//Phaseshift.Seed seed2 = new Phaseshift.Seed(); seed2.collect();
-				//Starflower.Seed seed3 = new Starflower.Seed(); seed3.collect();
-				
-								
-				//PotionOfLiquidFlame potion5 = new PotionOfLiquidFlame(); potion5.collect();
-				//BookOfDead dbook = new BookOfDead(); dbook.collect();
-				///BookOfLife lbook = new BookOfLife(); lbook.collect();
-				//BookOfTranscendence tbook = new BookOfTranscendence(); tbook.collect();
-				//SanChikarah san = new SanChikarah(); san.collect();	
-				
-		        //SewersKey key1 = new SewersKey(); key1.collect();
-		        //PrisonKey key2 = new PrisonKey(); key2.collect();
-		        //CavesKey key3 = new CavesKey(); key3.collect();
-		        //CityKey key4 = new CityKey(); key4.collect();
-		      // HallsKey key5 = new HallsKey(); key5.collect();
-		        FullMoonberry berry2 = new FullMoonberry(10); berry2.collect();		
-*/
 	}
 	
 	public String title() {

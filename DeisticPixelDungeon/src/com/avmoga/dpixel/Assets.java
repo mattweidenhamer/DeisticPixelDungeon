@@ -117,6 +117,7 @@ public class Assets {
 	public static final String TINKERER1 = "tinkerer.png";
 	public static final String DEWPROTECTOR = "dewprotector.png";
 	public static final String ORBOFZOT = "orbofzot.png";
+	public static final String SINGULARITY = "singularity.png";
 	public static final String SEEKINGBOMB = "seekingbomb.png";
 	public static final String CRABKING = "crabking.png";
 	public static final String HERMITCRAB = "hermitcrab.png";

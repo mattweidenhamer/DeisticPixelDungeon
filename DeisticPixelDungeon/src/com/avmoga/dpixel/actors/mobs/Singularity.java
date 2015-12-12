@@ -27,6 +27,7 @@ import com.avmoga.dpixel.effects.CellEmitter;
 import com.avmoga.dpixel.effects.Lightning;
 import com.avmoga.dpixel.sprites.CharSprite;
 import com.avmoga.dpixel.sprites.OrbOfZotSprite;
+import com.avmoga.dpixel.sprites.SingularitySprite;
 import com.avmoga.dpixel.utils.GLog;
 import com.avmoga.dpixel.utils.Utils;
 import com.watabou.noosa.Camera;
@@ -40,7 +41,7 @@ public class Singularity extends Mob implements Callback {
 
 	{
 		name = "arcane singularity";
-		spriteClass = OrbOfZotSprite.class;
+		spriteClass = SingularitySprite.class;
 		
 		hostile = true;
 		

@@ -30,6 +30,7 @@ import com.avmoga.dpixel.actors.hero.Hero;
 import com.avmoga.dpixel.actors.mobs.Mob;
 import com.avmoga.dpixel.actors.mobs.pets.PET;
 import com.avmoga.dpixel.effects.Speck;
+import com.avmoga.dpixel.gods.God;
 import com.avmoga.dpixel.items.Item;
 import com.avmoga.dpixel.items.food.Blackberry;
 import com.avmoga.dpixel.items.food.Blueberry;
@@ -49,6 +50,7 @@ import com.avmoga.dpixel.scenes.PixelScene;
 import com.avmoga.dpixel.sprites.CharSprite;
 import com.avmoga.dpixel.sprites.HeroSprite;
 import com.avmoga.dpixel.ui.BuffIndicator;
+import com.avmoga.dpixel.ui.GodIndicator;
 import com.avmoga.dpixel.ui.HealthBar;
 import com.avmoga.dpixel.ui.RedButton;
 import com.avmoga.dpixel.ui.Window;
@@ -66,6 +68,7 @@ public class WndHero extends WndTabbed {
 	private static final String TXT_STATS = "Stats";
 	private static final String TXT_BUFFS = "Buffs";
 	private static final String TXT_PET = "Pet";
+	private static final String TXT_DEITY = "Deities";
 
 	private static final String TXT_HEALS = "%+dHP";
 	
@@ -93,6 +96,7 @@ public class WndHero extends WndTabbed {
 	private StatsTab stats;
 	private PetTab pet;
 	private BuffsTab buffs;
+	private GodsTab gods;
 
 	private SmartTexture icons;
 	private TextureFilm film;
@@ -154,6 +158,13 @@ public class WndHero extends WndTabbed {
 				buffs.visible = buffs.active = selected;
 			};
 		});
+		/*add(new LabeledTab(TXT_DEITY) {
+		*	@Override
+		*	protected void select(boolean value) {
+		*		super.select(value);
+		*		gods.visible = gods.active = selected;
+		*	};
+		});*/
 		
 		resize(WIDTH, (int) Math.max(stats.height(), buffs.height()));
 
@@ -266,6 +277,42 @@ public class WndHero extends WndTabbed {
 		public float height() {
 			return pos;
 		}
+	}
+	
+	private class GodsTab extends Group {
+		
+		private static final int GAP = 2;
+		
+		private float pos;
+		
+		public GodsTab() {
+			for (God god : Dungeon.discoveredGods) {
+				godSlot(god);
+			}
+		}
+
+		private void godSlot(God god) {
+
+			int index = god.icon();
+
+
+				Image icon = new Image(icons);
+				icon.frame(film.get(index));
+				icon.y = pos;
+				add(icon);
+
+				BitmapText txt = PixelScene.createText(god.name(), 8);
+				txt.x = icon.width + GAP;
+				txt.y = pos + (int) (icon.height - txt.baseLine()) / 2;
+				add(txt);
+
+				pos += GAP + icon.height;
+		}
+
+		public float height() {
+			return pos;
+		}
+		
 	}
 
 	private class BuffsTab extends Group {

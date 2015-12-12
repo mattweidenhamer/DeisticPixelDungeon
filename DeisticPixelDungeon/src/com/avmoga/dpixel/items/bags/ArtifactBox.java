@@ -14,7 +14,7 @@ public class ArtifactBox extends Bag{
 
 	{
 		name = "artifact collection";
-		image = ItemSpriteSheet.KEYRING;
+		image = ItemSpriteSheet.ARTIFACT_BOX;
 
 		size = 16;
 		
@@ -42,8 +42,8 @@ public class ArtifactBox extends Bag{
 			}
 	}
 	public String info() {
-		return "This box is lined with a pleasant-feeling fabric, and there is a glass windows for "
-				+ "you to look inside with. You could probably store a decent number of valuable "
+		return "This collector's box is lined with a pleasant-feeling fabric, and there is a large keyhole for "
+				+ "you to keep the contents secure with. You could probably store a decent number of valuable "
 				+"items in this box.";
 	}
 }

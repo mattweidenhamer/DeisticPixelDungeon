@@ -61,13 +61,13 @@ public class Blacksmith extends NPC {
 	private static final String TXT3 = "Dark gold ore. 15 pieces. Seriously, is it dat hard?";
 	private static final String TXT4 = "I said I need bat blood on the pickaxe. Chop chop!";
 	private static final String TXT_COMPLETED = "Oh, you have returned... Better late dan never.";
-	private static final String TXT_GET_LOST = "I'm busy. Get lost!";
+	private static final String TXT_GET_LOST = "Huh? Why'd we make all da weapons in dis dungeon? You see anything better ta do round here?";
 	private static final String AYYLMAO = "namenumber";
 	private static final String TXT_LOOKS_BETTER = "your %s certainly looks better now";
 	private static final String COLLECTED = "Finally, the SanChikarah. I will forge them for you...";
 
 	{
-		name = BlacksmithName.getName(Dungeon.names);
+		name = "Troll Blacksmith named Bip";
 		spriteClass = BlacksmithSprite.class;
 	}
 	
@@ -81,6 +81,7 @@ public class Blacksmith extends NPC {
 	@Override
 	public void interact() {
 		Dungeon.names++;
+		this.name = BlacksmithName.getName(Dungeon.names);
 		sprite.turnTo(pos, Dungeon.hero.pos);
 		
 		if (checksan()){

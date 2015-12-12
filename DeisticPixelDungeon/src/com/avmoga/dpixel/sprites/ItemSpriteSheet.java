@@ -308,5 +308,6 @@ public class ItemSpriteSheet {
 	public static final int ARTIFACT_ROOT = ROW16 + 7;
 	public static final int ARTIFACT_RADIO = ROW16 + 8;
 	public static final int ARTIFACT_BOX = ROW16 + 9;
+	public static final int ARTIFACT_RAPPER = ROW16 + 10;
 
 }

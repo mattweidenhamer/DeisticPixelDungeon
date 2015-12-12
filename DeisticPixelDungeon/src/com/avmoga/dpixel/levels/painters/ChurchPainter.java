@@ -25,22 +25,22 @@ public class ChurchPainter extends Painter {//Michaelangelo
 			a = new Point(room.left + 1, entrance.y - 1);
 			b = new Point(room.left + 1, entrance.y + 1);
 			fill(level, room.right - 1, room.top + 1, 1, room.height() - 1,
-					Terrain.BOOKSHELF);
+					Terrain.STATUE);
 		} else if (entrance.x == room.right) {
 			a = new Point(room.right - 1, entrance.y - 1);
 			b = new Point(room.right - 1, entrance.y + 1);
 			fill(level, room.left + 1, room.top + 1, 1, room.height() - 1,
-					Terrain.BOOKSHELF);
+					Terrain.STATUE);
 		} else if (entrance.y == room.top) {
 			a = new Point(entrance.x + 1, room.top + 1);
 			b = new Point(entrance.x - 1, room.top + 1);
 			fill(level, room.left + 1, room.bottom - 1, room.width() - 1, 1,
-					Terrain.BOOKSHELF);
+					Terrain.STATUE);
 		} else if (entrance.y == room.bottom) {
 			a = new Point(entrance.x + 1, room.bottom - 1);
 			b = new Point(entrance.x - 1, room.bottom - 1);
 			fill(level, room.left + 1, room.top + 1, room.width() - 1, 1,
-					Terrain.BOOKSHELF);
+					Terrain.STATUE);
 		}
 		if (a != null && level.map[a.x + a.y * Level.getWidth()] == Terrain.EMPTY) {
 			set(level, a, Terrain.STATUE);

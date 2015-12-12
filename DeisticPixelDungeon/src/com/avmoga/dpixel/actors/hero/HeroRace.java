@@ -13,6 +13,7 @@ import com.avmoga.dpixel.items.DewVial;
 import com.avmoga.dpixel.items.DewVial2;
 import com.avmoga.dpixel.items.Generator;
 import com.avmoga.dpixel.items.SewersKey;
+import com.avmoga.dpixel.items.TomeOfSpecialty;
 import com.avmoga.dpixel.items.artifacts.AresChains;
 import com.avmoga.dpixel.items.artifacts.Artifact;
 import com.avmoga.dpixel.items.artifacts.CommRelay;
@@ -103,23 +104,33 @@ public enum HeroRace {
 		hero.resistances().add(Burning.class);
 		hero.resistances().add(Poison.class);
 		hero.resistances().add(Burning.class);
-		DewVial vial = new DewVial(); vial.collect(); 
+		if(Badges.isUnlocked(Badges.Badge.MASTERY_DWARF)){
+			TomeOfSpecialty special = new TomeOfSpecialty(); special.collect();
+		}
 	}
 	private static void initHuman(Hero hero){
 		hero.heroRace = HUMAN;
 		hero.HP = (hero.HT -= 2);
+		if(Badges.isUnlocked(Badges.Badge.MASTERY_HUMAN)){
+			TomeOfSpecialty special = new TomeOfSpecialty(); special.collect();
+		}
 	}
 	private static void initWraith(Hero hero){
 		hero.heroRace = WRAITH;
 		hero.resistances().add(Burning.class);
 		hero.resistances().add(Freezing.class);
+		if(Badges.isUnlocked(Badges.Badge.MASTERY_WRAITH)){
+			TomeOfSpecialty special = new TomeOfSpecialty(); special.collect();
+		}
 	}
 	private static void initGnoll(Hero hero){
 		hero.heroRace = GNOLL;
 		ScrollOfRegrowth regrow = new ScrollOfRegrowth();
 		regrow.setKnown();
 		regrow.collect();
-		SewersKey key = new SewersKey(); key.collect();
+		if(Badges.isUnlocked(Badges.Badge.MASTERY_GNOLL)){
+			TomeOfSpecialty special = new TomeOfSpecialty(); special.collect();
+		}
 	}
 	public String[] perks(){
 		switch(this){

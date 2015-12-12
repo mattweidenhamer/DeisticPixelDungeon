@@ -45,7 +45,7 @@ public class Statue extends Mob {
 	}	@Override
 	public void notice() {
 		super.notice();
-		if(!seenHero){
+		if(!this.seenHero){
 			this.yell(quotes[Random.Int(quotes.length - 1)]);
 			this.seenHero = true;
 		}
