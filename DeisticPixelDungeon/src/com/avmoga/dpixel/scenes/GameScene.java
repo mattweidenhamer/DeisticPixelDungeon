@@ -19,6 +19,7 @@ package com.avmoga.dpixel.scenes;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.avmoga.dpixel.Assets;
 import com.avmoga.dpixel.Badges;
@@ -680,6 +681,17 @@ public class GameScene extends PixelScene {
 						listener, mode, title) : mode == Mode.WAND ? WndBag
 						.getBag(WandHolster.class, listener, mode, title)
 						: WndBag.lastBag(listener, mode, title);
+
+		scene.add(wnd);
+
+		return wnd;
+	}
+	
+	public static WndBag selectItem(HashSet<? extends Item> items, WndBag.Listener listener, WndBag.Mode mode, 
+			String title) {
+		cancelCellSelector();
+
+		WndBag wnd = new WndBag(items, listener, mode, title);
 
 		scene.add(wnd);
 

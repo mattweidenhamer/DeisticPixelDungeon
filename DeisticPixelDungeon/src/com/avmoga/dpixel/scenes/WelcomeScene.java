@@ -19,11 +19,11 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.0 DPD, v0.3.0: SPD, 0.2.4c: PD 1.7.5 and Some Extras!";
+	private static final String TTL_Update = "v0.1.5 DPD: Matthew, v0.3.5: SPD, 0.2.4c: PD 1.7.5 and Some Extras!";
 
 	private static final String TTL_Future = "Wait What?";
 
-	private static final String TXT_Welcome = "Deistic Pixel Dungeon\n\nVersion 0.1.3: Exodus"
+	private static final String TXT_Welcome = "Deistic Pixel Dungeon\n\nVersion 0.1.5: Matthew"
 			+"This is a rework/expansion of Watabou's Pixel Dungeon.\n\n"
 			+ "Included are all additions from Shattered Pixel Dungeon (0.2.4c) by 00-Evan.\n\n"
 			+ "Additionally, all additions from Sprouted Pixel Dungeon (0.3.5 beta) by dachhack are here.\n\n"
@@ -36,7 +36,13 @@ public class WelcomeScene extends PixelScene {
 
 	//TODO: Fix this whenever an update is pushed.
 	private static final String TXT_Update = 
-			"Version 1.0.3 is hopefully the last bugfixing patch. Everything should be stable for the most part now."
+			"Version 0.1.5: The holiday update! /n/n"
+			+ "Added the W. R. A. P. P. E. R."
+			+ "Fixed: Non-Persistant Subclasses"
+			+ "Fixed: Wooden Effigy not leveling up"
+			+ "Fixed: Crashing when trying to check your character in Dew Levels"
+			+ "Fixed: 0-gold bug"
+			+ "Unable to be duplicated: Not being able to descend beyond Level 23"
 			;
 
 	private static final String TXT_Future = "It seems that your current saves are from a future version of Sprouted Pixel Dungeon!\n\n"

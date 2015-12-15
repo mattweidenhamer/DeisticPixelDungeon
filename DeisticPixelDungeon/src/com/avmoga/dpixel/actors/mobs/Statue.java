@@ -61,7 +61,8 @@ public class Statue extends Mob {
 			"Only the Gods may judge you, Hero. I am just here to arrange your meeting.", "Too much agreement kills a chat, y'know.", "Hero, in my 1000 years locked in this dungeon, I have learned to resist everything... except temptation,",
 			"WHAT YEAR IS IT?", "TEN THOUSAND YEARS will give you such a crick in the neck.", "Prejudice about Heroes is a great time saver. I could form opinions about you for 1000 years without having any actual facts.", 
 			"Hero, you need a haircut. You look like a Firebloom.", "Reality continues to ruin my life.", "My life needs editing.", "All the other Animated Statues in this dungeon are such crybabies.",
-			"I swear, all I have is a blazing dagger. Please don't hurt me.", "Your Grim Warhammer +3 is in another castle.", "99 hero's skulls on the wall... 99 hero's skulls...", "Hello from the inside."};
+			"I swear, all I have is a blazing dagger. Please don't hurt me.", "Your Grim Warhammer +3 is in another castle.", "99 hero's skulls on the wall... 99 hero's skulls...", "Hello from the inside.",
+			"Finally, I am free! Tell me, have the Cubs won the World Series yet?"};
 
 	private Weapon weapon;
 

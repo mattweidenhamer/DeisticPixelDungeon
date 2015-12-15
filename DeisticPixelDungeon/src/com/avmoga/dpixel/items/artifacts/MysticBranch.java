@@ -34,20 +34,13 @@ public class MysticBranch extends Artifact {
 		level = 0;
 		levelCap = 4;
 		
+		exp = 0;
 		charge = 0;
 	}
 	private static final String TXT_MONSTER = "There is a monster there already.";
 	private static final String UPGRADETXT = "Your effigy grows in power!";
 	private static final String AC_PLANT = "SEED";
 	
-	public class SlowLevel extends ArtifactBuff {
-		public void checkUpgrade(int checkLevel){
-			if(Math.round(level / (checkLevel * 10)) >= 1){
-				level++;
-				GLog.i(UPGRADETXT);
-			}
-		}
-	}
 	protected static CellSelector.Listener listener = new CellSelector.Listener() {
 
 		@Override
@@ -92,7 +85,7 @@ public class MysticBranch extends Artifact {
 				charge--;
 			}
 			if(cursed){
-					if(Random.Int(20)==0){
+					if(Random.Int(30)==0){
 						new Wraith().pos = Dungeon.level.randomRespawnCell();
 						GLog.w("A spirit has been dispatched to avenge the dungeon.");
 					}
@@ -103,6 +96,15 @@ public class MysticBranch extends Artifact {
 		}
 		public String toString() {
 			return "Affinity";
+		}
+		public void gainEXP(){
+			exp += 1;
+			if(exp > ((level + 1) * 100)){
+				exp = 0;
+				if(level < levelCap){
+					upgrade();
+				}
+			}
 		}
 	}
 

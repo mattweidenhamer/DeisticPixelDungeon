@@ -32,6 +32,7 @@ public class IncendiaryShuriken extends MissileWeapon {
 	{
 		name = "incendiary shuriken";
 		image = ItemSpriteSheet.SHURIKEN;
+		rapperValue = 4;
 
 		STR = 13;
 

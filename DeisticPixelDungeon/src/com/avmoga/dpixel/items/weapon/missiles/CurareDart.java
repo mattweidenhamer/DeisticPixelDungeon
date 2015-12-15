@@ -31,6 +31,7 @@ public class CurareDart extends MissileWeapon {
 	{
 		name = "curare dart";
 		image = ItemSpriteSheet.CURARE_DART;
+		rapperValue = 4;
 
 		STR = 14;
 

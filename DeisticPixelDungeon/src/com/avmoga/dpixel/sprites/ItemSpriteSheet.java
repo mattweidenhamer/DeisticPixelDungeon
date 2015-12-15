@@ -107,6 +107,7 @@ public class ItemSpriteSheet {
 	public static final int GLAIVE = ROW3 + 10;
 	public static final int ADAMANT_WEAPON = ROW3 + 11;
 	public static final int CHAINSAW = ROW3 + 12;
+	public static final int SPECIALTY = ROW3 + 13;
 
 	// Row Four: Missile weapons and sporks
 	public static final int DART = ROW4 + 0;

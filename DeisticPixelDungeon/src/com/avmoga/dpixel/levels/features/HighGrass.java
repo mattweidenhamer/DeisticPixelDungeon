@@ -70,11 +70,10 @@ public class HighGrass {
 						naturalismLevel = -1;
 					}
 				}
-				MysticBranch.SlowLevel slowLevel = ch.buff(MysticBranch.SlowLevel.class);
-				if(slowLevel != null){
-					if(!slowLevel.isCursed()){
-						woodLevel = slowLevel.level() + 1;
-						slowLevel.checkUpgrade(woodLevel);
+				MysticBranch.Affinity affinity = ch.buff(MysticBranch.Affinity.class);
+				if(affinity != null){
+					if(!affinity.isCursed()){
+						affinity.gainEXP();
 					}
 				}
 			}

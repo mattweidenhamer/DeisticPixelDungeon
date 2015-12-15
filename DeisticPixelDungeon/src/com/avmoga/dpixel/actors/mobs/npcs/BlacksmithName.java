@@ -21,7 +21,7 @@ public class BlacksmithName {
 	private static String[] blacksmithNames = lyrics.split(" ");
 	public static String getName(int n) {
 		if(blacksmithNames[n] != null){
-			return "Troll Blacksmith named" + blacksmithNames[n];
+			return "Troll Blacksmith named " + blacksmithNames[n];
 		} else {
 			return "Troll Blacksmith named bop";
 		}

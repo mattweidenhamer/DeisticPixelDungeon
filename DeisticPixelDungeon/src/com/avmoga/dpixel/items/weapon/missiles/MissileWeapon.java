@@ -35,6 +35,7 @@ import com.watabou.utils.Random;
 
 public class MissileWeapon extends Weapon {
 
+	public int rapperValue;
 	private static final String TXT_MISSILES = "Missile weapon";
 	private static final String TXT_YES = "Yes, I know what I'm doing";
 	private static final String TXT_NO = "No, I changed my mind";
@@ -44,6 +45,10 @@ public class MissileWeapon extends Weapon {
 		stackable = true;
 		levelKnown = true;
 		defaultAction = AC_THROW;
+	}
+	public void enhance(int powerLevel) {
+		this.MIN *= powerLevel;
+		this.MAX *= powerLevel;
 	}
 
 	@Override

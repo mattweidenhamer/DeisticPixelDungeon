@@ -106,6 +106,7 @@ public class WndChooseWay extends Window {
 
 		resize(WIDTH, (int) btnCancel.bottom());
 	}
+	
 	public WndChooseWay(final TomeOfSpecialty tome, final HeroSubRace way1,
 			final HeroSubRace way2) {
 

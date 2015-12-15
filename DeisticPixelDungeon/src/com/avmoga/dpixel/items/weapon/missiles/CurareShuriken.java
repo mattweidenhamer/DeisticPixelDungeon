@@ -31,7 +31,7 @@ public class CurareShuriken extends MissileWeapon {
 	{
 		name = "curare shuriken";
 		image = ItemSpriteSheet.SHURIKEN;
-
+		rapperValue = 4;
 		STR = 13;
 
 		MIN = 2;

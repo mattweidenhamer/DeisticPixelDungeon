@@ -26,12 +26,12 @@ public class Wave extends MissileWeapon {
 	{
 		name = "wave";
 		image = ItemSpriteSheet.WAVE;
+		rapperValue = 0;
 
 		MIN = 1;
 		MAX = 4;
 
-		bones = false; // Finding them in bones would be semi-frequent and
-						// disappointing.
+		bones = false;
 	}
 
 	public Wave() {

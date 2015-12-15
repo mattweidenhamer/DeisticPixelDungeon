@@ -48,6 +48,7 @@ public class RiceBall extends MissileWeapon {
 	{
 		name = "rice dumpling";
 		image = ItemSpriteSheet.RICEBALL;
+		rapperValue = 0;
 
 		MIN = 1;
 		MAX = 2;

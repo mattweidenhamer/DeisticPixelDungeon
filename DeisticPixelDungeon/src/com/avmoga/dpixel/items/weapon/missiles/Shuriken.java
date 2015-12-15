@@ -26,6 +26,7 @@ public class Shuriken extends MissileWeapon {
 	{
 		name = "shuriken";
 		image = ItemSpriteSheet.SHURIKEN;
+		rapperValue = 2;
 
 		STR = 13;
 

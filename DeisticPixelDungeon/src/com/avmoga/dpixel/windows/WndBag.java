@@ -19,6 +19,9 @@ package com.avmoga.dpixel.windows;
 
 import android.graphics.RectF;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import com.avmoga.dpixel.Assets;
 import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.ShatteredPixelDungeon;
@@ -48,6 +51,7 @@ import com.avmoga.dpixel.items.scrolls.Scroll;
 import com.avmoga.dpixel.items.wands.Wand;
 import com.avmoga.dpixel.items.weapon.melee.MeleeWeapon;
 import com.avmoga.dpixel.items.weapon.missiles.Boomerang;
+import com.avmoga.dpixel.items.weapon.missiles.MissileWeapon;
 import com.avmoga.dpixel.plants.Plant.Seed;
 import com.avmoga.dpixel.scenes.GameScene;
 import com.avmoga.dpixel.scenes.PixelScene;
@@ -66,7 +70,7 @@ public class WndBag extends WndTabbed {
 	public static enum Mode {
 		ALL, UNIDENTIFED, UPGRADEABLE, QUICKSLOT, FOR_SALE, WEAPON, ARMOR, ENCHANTABLE, 
 		WAND, SEED, FOOD, POTION, SCROLL, EQUIPMENT, ADAMANT, REINFORCED, UPGRADEABLESIMPLE,
-		NOTREINFORCED, UPGRADEDEW, MISSILE
+		NOTREINFORCED, UPGRADEDEW, MISSILE, SHOWMISSILE
 	}
 
 	protected static final int COLS_P = 4;
@@ -90,6 +94,50 @@ public class WndBag extends WndTabbed {
 
 	private static Mode lastMode;
 	private static Bag lastBag;
+	
+	public WndBag(HashSet<? extends Item> items, Listener listener, Mode mode, String title) {
+		super();
+		
+		this.listener = listener;
+		this.mode = mode;
+		this.title = title;
+		
+		nCols = ShatteredPixelDungeon.landscape() ? COLS_L : COLS_P;
+		nRows = (Belongings.BACKPACK_SIZE + 4 + 1) / nCols
+				+ ((Belongings.BACKPACK_SIZE + 4 + 1) % nCols > 0 ? 1 : 0);
+
+		int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
+		int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
+
+		BitmapText txtTitle = PixelScene.createText(title, 9);
+		txtTitle.hardlight(TITLE_COLOR);
+		txtTitle.measure();
+		txtTitle.x = (int) (slotsWidth - txtTitle.width()) / 2;
+		txtTitle.y = (int) (TITLE_HEIGHT - txtTitle.height()) / 2;
+		add(txtTitle);
+
+		placeItemsSpecial(items);
+
+		resize(slotsWidth, slotsHeight + TITLE_HEIGHT);
+		
+	}
+
+	private void placeItemsSpecial(HashSet<? extends Item> items) {
+		count = nCols;
+		col = 0;
+		row = 1;
+		
+		// Items in the bag
+		for (Item item : items) {
+			placeItem(item);
+		}
+
+		// Free Space
+		while (count -  nCols < 12) {
+			placeItem(null);
+		}
+		
+	}
 
 	public WndBag(Bag bag, Listener listener, Mode mode, String title) {
 
@@ -405,13 +453,22 @@ public class WndBag extends WndTabbed {
 							&& (item instanceof Armor)
 							|| mode == Mode.ENCHANTABLE
 							&& (item instanceof MeleeWeapon	|| item instanceof Boomerang || item instanceof Armor)
-							|| mode == Mode.WAND && (item instanceof Wand)
-							|| mode == Mode.SEED && (item instanceof Seed)
-							|| mode == Mode.FOOD && (item instanceof Food)
-							|| mode == Mode.POTION && (item instanceof Potion)
-							|| mode == Mode.SCROLL && (item instanceof Scroll)
+							|| mode == Mode.WAND 
+							&& (item instanceof Wand)
+							|| mode == Mode.SEED 
+							&& (item instanceof Seed)
+							|| mode == Mode.FOOD 
+							&& (item instanceof Food)
+							|| mode == Mode.POTION 
+							&& (item instanceof Potion)
+							|| mode == Mode.SCROLL 
+							&& (item instanceof Scroll)
+							|| mode == Mode.MISSILE 
+							&& (item instanceof MissileWeapon)
 							|| mode == Mode.EQUIPMENT
 							&& (item instanceof EquipableItem)
+							|| mode == Mode.SHOWMISSILE 
+							&& (item instanceof MissileWeapon)
 							|| mode == Mode.ALL);
 				}
 			} else {

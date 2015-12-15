@@ -61,19 +61,16 @@ public enum HeroSubRace {
 		return desc;
 	}
 
-	private static final String SUBCLASS = "subClass";
+	private static final String SUBRACE = "subRace";
 
 	public void storeInBundle(Bundle bundle) {
-		bundle.put(SUBCLASS, toString());
+		bundle.put(SUBRACE, toString());
 	}
 
 	public static HeroSubRace restoreInBundle(Bundle bundle) {
-		String value = bundle.getString(SUBCLASS);
-		try {
-			return valueOf(value);
-		} catch (Exception e) {
-			return NONE;
-		}
+		String value = bundle.getString(SUBRACE);
+		return valueOf(value);
+
 	}
 
 }

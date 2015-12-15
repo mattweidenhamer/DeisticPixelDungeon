@@ -89,6 +89,7 @@ public class Blacksmith2 extends NPC {
 	@Override
 	public void interact() {
 		Dungeon.names++;
+		this.name = BlacksmithName.getName(Dungeon.names);
 		sprite.turnTo(pos, Dungeon.hero.pos);
 		
 		
@@ -162,6 +163,9 @@ public class Blacksmith2 extends NPC {
 		DarkGold gold = Dungeon.hero.belongings.getItem(DarkGold.class);
 		if (gold == null || gold.quantity() > 49) {
 			gold.detach(Dungeon.hero.belongings.backpack,50);
+			if(!(Dungeon.hero.belongings.getItem(DarkGold.class).quantity() > 0)){
+				gold.detachAll(Dungeon.hero.belongings.backpack);
+			}
 		}
 		
 		GLog.p(TXT_LOOKS_BETTER, item1.name());

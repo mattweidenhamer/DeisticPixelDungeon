@@ -40,6 +40,7 @@ public class ForestDart extends MissileWeapon {
 	{
 		name = "forest dart";
 		image = ItemSpriteSheet.DART;
+		rapperValue = 4;
 
 		MIN = 4;
 		MAX = 10;

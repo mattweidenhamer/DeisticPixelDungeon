@@ -23,14 +23,17 @@ import com.avmoga.dpixel.Challenges;
 import com.avmoga.dpixel.Dungeon;
 import com.avmoga.dpixel.ShatteredPixelDungeon;
 import com.avmoga.dpixel.items.Bomb;
+import com.avmoga.dpixel.items.MegaKey;
 import com.avmoga.dpixel.items.ReturnBeacon;
 import com.avmoga.dpixel.items.SewersKey;
 import com.avmoga.dpixel.items.TomeOfMastery;
+import com.avmoga.dpixel.items.TomeOfSpecialty;
 import com.avmoga.dpixel.items.armor.Armor;
 import com.avmoga.dpixel.items.armor.ClothArmor;
 import com.avmoga.dpixel.items.armor.glyphs.Viscosity;
 import com.avmoga.dpixel.items.artifacts.CloakOfShadows;
 import com.avmoga.dpixel.items.artifacts.CommRelay;
+import com.avmoga.dpixel.items.artifacts.Rapper;
 import com.avmoga.dpixel.items.bags.ArtifactBox;
 import com.avmoga.dpixel.items.bags.KeyRing;
 import com.avmoga.dpixel.items.food.Food;
@@ -45,7 +48,11 @@ import com.avmoga.dpixel.items.weapon.melee.Dagger;
 import com.avmoga.dpixel.items.weapon.melee.Knuckles;
 import com.avmoga.dpixel.items.weapon.melee.ShortSword;
 import com.avmoga.dpixel.items.weapon.missiles.Boomerang;
+import com.avmoga.dpixel.items.weapon.missiles.CurareDart;
 import com.avmoga.dpixel.items.weapon.missiles.Dart;
+import com.avmoga.dpixel.items.weapon.missiles.ForestDart;
+import com.avmoga.dpixel.items.weapon.missiles.Shuriken;
+import com.avmoga.dpixel.items.weapon.missiles.Tamahawk;
 import com.avmoga.dpixel.utils.GLog;
 import com.watabou.utils.Bundle;
 
@@ -219,7 +226,11 @@ public enum HeroClass {
 				hero.HT=hero.HP=999;
 				hero.STR = hero.STR + 20;
 
-				Dungeon.level.drop(new ArtifactBox(), Dungeon.hero.pos);
+				new SewersKey().collect();
+				new MegaKey().collect();
+				for(int i = 0; i < 4; i++){
+					new ScrollOfMagicMapping().identify().collect();
+				}
 		}
 	}
 	

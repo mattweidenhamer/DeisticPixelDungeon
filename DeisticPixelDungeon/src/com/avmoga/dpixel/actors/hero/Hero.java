@@ -268,7 +268,7 @@ public class Hero extends Char {
 		heroClass.storeInBundle(bundle);
 		subClass.storeInBundle(bundle);
 		heroRace.storeIntoBundle(bundle);
-		subRace.storeInBundle(bundle);;
+		subRace.storeInBundle(bundle);
 
 		bundle.put(ATTACK, attackSkill);
 		bundle.put(DEFENSE, defenseSkill);

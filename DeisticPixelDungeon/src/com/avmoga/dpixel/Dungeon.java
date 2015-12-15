@@ -485,6 +485,25 @@ public static Level newSkeletonBossLevel(){
 
 	return level;
 }
+public static Level newDebugLevel(){
+
+	Dungeon.level = null;
+	Actor.clear();
+	depth = 41;
+	if (depth > Statistics.realdeepestFloor) {
+		Statistics.realdeepestFloor = depth;}
+	
+	Arrays.fill(visible, false);
+
+	Level level;
+	level = new SkeletonBossLevel();
+
+	level.create();
+
+	Statistics.qualifiedForNoKilling = !bossLevel();
+
+	return level;
+}
 
 public static Level newCrabBossLevel(){
 

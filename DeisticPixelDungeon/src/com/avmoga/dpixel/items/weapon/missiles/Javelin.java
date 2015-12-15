@@ -29,6 +29,7 @@ public class Javelin extends MissileWeapon {
 	{
 		name = "javelin";
 		image = ItemSpriteSheet.JAVELIN;
+		rapperValue = 5;
 
 		STR = 15;
 

@@ -246,10 +246,10 @@ public class WndHero extends WndTabbed {
 			
 			pos += GAP;
 			
-			if (Dungeon.dewDraw){
-			statSlot(TXT_MOVES2, (int) Dungeon.level.currentmoves);
-			statSlot(TXT_MOVES3, (int) Dungeon.pars[Dungeon.depth]);
-			statSlot(TXT_MOVES4, (int) Statistics.prevfloormoves);
+			if (Dungeon.dewDraw && !(Dungeon.depth > 25)){
+				statSlot(TXT_MOVES2, (int) Dungeon.level.currentmoves);
+				statSlot(TXT_MOVES3, (int) Dungeon.pars[Dungeon.depth]);
+				statSlot(TXT_MOVES4, (int) Statistics.prevfloormoves);
 			}
 			
 			pos += GAP;

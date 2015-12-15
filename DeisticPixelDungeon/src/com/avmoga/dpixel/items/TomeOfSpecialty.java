@@ -50,7 +50,7 @@ public class TomeOfSpecialty extends Item {
 	{
 		stackable = false;
 		name = "Tome of Specialty";
-		image = ItemSpriteSheet.MASTERY;
+		image = ItemSpriteSheet.SPECIALTY;
 
 		unique = true;
 	}
@@ -104,7 +104,7 @@ public class TomeOfSpecialty extends Item {
 
 	@Override
 	public boolean doPickUp(Hero hero) {
-		Badges.validateMastery();
+		Badges.validateRace(hero.heroRace);
 		return super.doPickUp(hero);
 	}
 
@@ -149,7 +149,7 @@ public class TomeOfSpecialty extends Item {
 		}
 		else if (way == HeroSubRace.BRUTE) {
 			Dungeon.hero.buff(Madness.class);
-			//If you want to use this, you gotta work for it.
+			
 		}
 	}
 }
