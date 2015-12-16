@@ -65,7 +65,7 @@ public class Goo extends Mob {
 		lootChance = 0.5f;
 		
 		lootOther = Dungeon.getMonth() == 9 ? new Chainsaw().enchantBuzz() : (Dungeon.getMonth() == 11 ? new Rapper() : new Egg());
-		lootChanceOther = 0.05f;
+		lootChanceOther = 0.5f;
 	}
 
 	private int pumpedUp = 0;

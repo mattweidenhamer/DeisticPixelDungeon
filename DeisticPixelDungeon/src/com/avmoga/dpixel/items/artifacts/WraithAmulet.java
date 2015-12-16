@@ -57,6 +57,7 @@ public class WraithAmulet extends Artifact {
 			if(useableBasic()){
 				if(this.isEquipped(Dungeon.hero)){
 					if(this.charge > 0){
+						exp += 5;
 						Buff.affect(Dungeon.hero, Invisibility.class, Invisibility.DURATION);
 						GLog.i(TXT_GHOST);
 						charge--;
@@ -116,6 +117,12 @@ public class WraithAmulet extends Artifact {
 
 					if (charge == chargeCap) {
 						partialCharge = 0;
+					}
+				}
+				if(exp > level * 50){
+					exp = 0;
+					if(level < levelCap){
+						
 					}
 				}
 			} else if(cursed){
@@ -183,8 +190,6 @@ public class WraithAmulet extends Artifact {
 		public void onSelect(Integer target) {
 			HashSet<Mob> victim = new HashSet<Mob>();
 			if (target != null && (Level.passable[target])) {
-				final WraithAmulet amulet = (WraithAmulet) Item.curItem;
-				amulet.charge--;
 				if(Actor.findChar(target) != null){
 					victim.add((Mob) Actor.findChar(target));
 				}
@@ -198,6 +203,9 @@ public class WraithAmulet extends Artifact {
 					if(Actor.findChar(target) != null){
 							if(Level.distance(Dungeon.hero.pos, target) == 2){
 								if(!Level.fieldOfView[target]){
+									final WraithAmulet amulet = (WraithAmulet) Item.curItem;
+									amulet.charge--;
+									amulet.exp += 10;
 									Actor.findChar(target).damage(Actor.findChar(target).HT, WraithAmulet.class);
 									Dungeon.hero.pos = target;
 									Dungeon.hero.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);

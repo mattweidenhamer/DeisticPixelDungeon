@@ -81,7 +81,8 @@ public class Sign {
 			"Pixel-Mart. Special prices for demon hunters!",
 
 			// hmm.. I wonder what this is?
-			"standOfF roW", "fraCtion doWnpOur", "gaffe MaSts" };
+			//TODO: update with quotes to tease
+			"fetch DensesT GOod", "eNTreNCh Pews", "yo fisH vAlid so End GoO" };
 	
 	
 	private static final String PIT = "Note to self: Always leave a teleport scroll in the vault.";

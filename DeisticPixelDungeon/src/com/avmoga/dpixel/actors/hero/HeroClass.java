@@ -225,12 +225,7 @@ public enum HeroClass {
 				
 				hero.HT=hero.HP=999;
 				hero.STR = hero.STR + 20;
-
-				new SewersKey().collect();
 				new MegaKey().collect();
-				for(int i = 0; i < 4; i++){
-					new ScrollOfMagicMapping().identify().collect();
-				}
 		}
 	}
 	

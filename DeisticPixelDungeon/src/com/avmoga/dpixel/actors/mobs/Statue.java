@@ -42,12 +42,13 @@ public class Statue extends Mob {
 
 		EXP = 5 + Dungeon.depth * 2;
 		state = PASSIVE;
+		seenHero = false;
 	}	@Override
 	public void notice() {
 		super.notice();
 		if(!this.seenHero){
 			this.yell(quotes[Random.Int(quotes.length - 1)]);
-			this.seenHero = true;
+			seenHero = true;
 		}
 	}
 	private boolean seenHero = false;
@@ -158,6 +159,7 @@ public class Statue extends Mob {
 	@Override
 	public boolean reset() {
 		state = PASSIVE;
+		seenHero = false;
 		return true;
 	}
 

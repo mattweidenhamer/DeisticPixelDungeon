@@ -71,7 +71,6 @@ public enum HeroRace {
 			"Gnolls start with a scroll of regrowth, as a legacy from their homeland.", //Added
 			"The Gnoll's small bodies require extra nutrition, and they are hurt more by lack of food.",//Added 
 			"Gnolls are the only race who know how to use Wooden Effigies to their maximum potential.", 
-			"Gnolls may become either a Shaman or a Brute."
 	};
 	
 	public void raceHero(Hero hero){

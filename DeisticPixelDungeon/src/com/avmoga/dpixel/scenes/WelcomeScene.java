@@ -36,20 +36,18 @@ public class WelcomeScene extends PixelScene {
 
 	//TODO: Fix this whenever an update is pushed.
 	private static final String TXT_Update = 
-			"Version 0.1.5: The holiday update! /n/n"
-			+ "Added the W. R. A. P. P. E. R."
-			+ "Fixed: Non-Persistant Subclasses"
-			+ "Fixed: Wooden Effigy not leveling up"
-			+ "Fixed: Crashing when trying to check your character in Dew Levels"
-			+ "Fixed: 0-gold bug"
-			+ "Unable to be duplicated: Not being able to descend beyond Level 23"
+			"Version 0.1.6: The holiday update Bugfix! \n\n"
+			+ "Fixed a critical error where the game would crash on level 24\n"
+			+ "Fixed a minor text error on the Race scene.\n"
+			+ "Fixed some last artifact glitches"
+			+ "Updated some words hidden in plain signt"
 			;
 
 	private static final String TXT_Future = "It seems that your current saves are from a future version of Sprouted Pixel Dungeon!\n\n"
 			+ "Either you're messing around with older versions of the app, or something has gone buggy.\n\n"
 			+ "Regardless, tread with caution! Your saves may contain things which don't exist in this version, "
 			+ "this could cause some very weird errors to occur."
-			+ "consider reporting this bug to the developer!";
+			+ " Consider reporting this bug to the developer!";
 
 	private static final String LNK = "https://play.google.com/store/apps/details?id=com.avmoga.dpixel";
 

@@ -255,7 +255,7 @@ public class Dungeon {
 		dewWater = false;
 		wings = false;
 	    
-		pars = new int[24];
+		pars = new int[25];
 		
 	}
 

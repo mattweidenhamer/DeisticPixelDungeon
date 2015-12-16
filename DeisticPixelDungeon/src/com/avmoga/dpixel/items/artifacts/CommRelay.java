@@ -163,8 +163,7 @@ public class CommRelay extends Artifact {
 	
 	public class Collection extends ArtifactBuff{
 		public void collectGold(int gold){
-			exp += gold / 8;
-			checkUpgrade();
+			exp += gold / 4;
 		}
 		public boolean act(){
 			if(isCursed()){
@@ -173,6 +172,10 @@ public class CommRelay extends Artifact {
 				}
 			}
 			spend(TICK);
+			if(exp >= (500 * level) && level < levelCap){
+				exp -= (500 * level);
+				upgrade();
+			}
 			updateQuickslot();
 			return true;
 		}
